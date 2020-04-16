@@ -1,12 +1,12 @@
 <?php 
 //Open the connection
 $conn=mysqli_connect("localhost","root","","blog");
-if(! $conn){
+if(!$conn){
 	echo mysqli_connect_error();
 	exit;
 }
 //Do the operation 
-$query="SELECT * FROM 'users'";
+$query="SELECT * FROM users";
 $result=mysqli_query($conn,$query);
 ?>
 <html>
@@ -41,6 +41,20 @@ while($row=mysqli_fetch_assoc($result)){
 }
 ?>
 </tbody>
+<tfoot>
+ <tr>
+ <td colspan="2" style="text-align: center"><?= mysqli_num_rows($result)?> Users</td>
+ <td colspan="3" style="text-align: center"><a href="add.php">Add User</a>
+
+
+ </td>
+ </tr>
+</tfoot>
 </table>
 </body>
 </html>
+<?php 
+//close the connection
+mysqli_free_result($result);
+mysqli_close($conn);
+?>
