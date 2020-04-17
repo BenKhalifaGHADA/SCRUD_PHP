@@ -7,7 +7,21 @@ if(!$conn){
 }
 //Do the operation 
 $query="SELECT * FROM users";
-$result=mysqli_query($conn,$query);
+
+
+//Search by the name or the email
+if(isset($_GET['search'])){
+   $search=mysqli_escape_string($conn,$_GET['search']);
+   $query.=" WHERE (`name` LIKE '%".$search."%') OR (`email` LIKE '%".$search."%')";
+   // die($query);
+
+   // SELECT * FROM users WHERE name='jake' AND password LIKE '%w%'
+   // SELECT * FROM usersWHERE (`name` LIKE '%ghada%') OR (`email` LIKE '%ghada%')
+    
+			// WHERE (`name` LIKE '%".$search."%') OR (`email` LIKE '%".$search."%')") or die(mysql_error());
+}
+$result=mysqli_query($conn,$query);  
+        
 ?>
 <html>
 <head>
@@ -15,6 +29,12 @@ $result=mysqli_query($conn,$query);
 </head>
 <body>
 <h1>List Users</h1>
+<form method="GET"> 
+  <input type="text" name="search" placeholder="Enter {Name} or {Email} to search" />
+  <input type="submit" value="search">
+
+</form>
+<!--Display a table containg all users-->
 <table>
 <thead>
 <tr>
