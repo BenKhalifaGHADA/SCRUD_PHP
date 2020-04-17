@@ -3,7 +3,7 @@
 $error_fields=array();
 if($_SERVER['REQUEST_METHOD'] =='POST'){
 
-  if(!(isset($_POST['name']) && !empty($_POST['name']))){
+  if(!(isset($_POST['name']) && !empty($_POST['name'])  )){
     $error_fields[]="name";
   }
   if(!(isset($_POST['email']) && filter_input(INPUT_POST,'email',FILTER_VALIDATE_EMAIL))){
@@ -61,7 +61,7 @@ if ($mysqli->query($query) === TRUE) {
     <br/>
 
     <label for="email">Email</label>
-    <input type="email" name="email" value="<?=(isset($_POST['name'])) ?$_POST['email']: '' ?>" /><?php if(in_array("email",$error_fields)) echo "* Please enter your email" ?>
+    <input type="email" name="email" value="<?=(isset($_POST['email'])) ?$_POST['email']: '' ?>" /><?php if(in_array("email",$error_fields)) echo "* Please enter your email" ?>
     <br/>
 
     <label for="password">Password</label>

@@ -54,8 +54,8 @@ while($row=mysqli_fetch_assoc($result)){
 <td><?= $row['name'] ?></td>
 <td><?=$row['email'] ?></td>
 <td><?= ($row['admin'])? 'Yes':'No' ?></td>
-<td><a href="edit.php?id=<?$row['id'] ?>">Edit</a></td>
-<td><a href="delete.php?id=<?$row['id'] ?>">Delete</a></td>
+<td><a href="edit.php?id=<?=$row['id'] ?>">Edit</a></td>
+<td><a href="delete.php?id=<?=$row['id'] ?>">Delete</a></td>
 </tr>
 <?php 
 }
