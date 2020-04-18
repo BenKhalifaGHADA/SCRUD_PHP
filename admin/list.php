@@ -1,4 +1,13 @@
 <?php 
+
+session_start();
+if(isset($_SESSION['id'])){
+   echo '<p>Welcome '.$_SESSION['email']. '<a href="../logout.php"> Logout</a></p>';
+}
+else{
+   header("Location: /login.php");
+   exit;
+}
 //Open the connection
 $conn=mysqli_connect("localhost","root","","blog");
 if(!$conn){
