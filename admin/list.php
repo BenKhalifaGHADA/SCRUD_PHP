@@ -42,18 +42,27 @@ $result=mysqli_query($conn,$query);
    <th>Name</th>
    <th>Email</th>
    <th>Admin</th>
+   <th>Avatar</th>
    <th>Actions</th>
 </tr>
 </thead>
 <tbody>
 <?php
 while($row=mysqli_fetch_assoc($result)){
+   
 ?>
 <tr>
 <td><?=$row['id']?></td>
 <td><?= $row['name'] ?></td>
 <td><?=$row['email'] ?></td>
 <td><?= ($row['admin'])? 'Yes':'No' ?></td>
+<td><?php if($row['avatar']) { ?>
+<img src="
+../uploads/<?=$row['name'].'.'.$row['avatar'] ;?>" style="width: 100px; height: 100px" /><?php } else {
+   ?>
+   <img src="../uploads/noimage.png" style="width: 100px; height: 100px" />
+<?php } ?>
+</td>
 <td><a href="edit.php?id=<?=$row['id'] ?>">Edit</a></td>
 <td><a href="delete.php?id=<?=$row['id'] ?>">Delete</a></td>
 </tr>
